@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyFlow</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<div class="app">
+   <div id="splash-screen">
+    
+    <img src="{{ url_for('static', filename=    'InShot_20260324_212735607.jpg') }}" alt="StudyFlow Logo" style="width: 250px;">
+    <p>Iniciando o StudyFlow...</p>
+</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">📚</div>
+      <h1>Study<span>Flow</span></h1>
+    </div>
+
+    <div class="progress-card">
+      <h3>🎯 Progresso hoje</h3>
+      <div class="progress-nums">
+        <span class="big" id="done-count">0</span>
+        <span class="of">/ <span id="total-count">0</span> tarefas</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-pct" id="progress-pct">0% concluído</div>
+    </div>
+
+    <div class="suggestion-card" id="suggestion-card">
+      <div class="tag">🧠 Sugestão de estudo</div>
+      <p id="suggestion-text">Adicione suas tarefas para receber sugestões personalizadas!</p>
+      <span class="subject-pill" id="suggestion-pill" style="display:none"></span>
+    </div>
+
+    <div class="filters-section">
+      <h4>Matérias</h4>
+      <div class="filter-list" id="subject-filters">
+        <button class="filter-btn active" data-subject="todas" onclick="setSubjectFilter('todas', this)">
+          <span class="filter-dot" style="background:#9a9485"></span>
+          Todas
+          <span class="filter-count" id="count-todas">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="filters-section">
+      <h4>Status</h4>
+      <div class="status-filters">
+        <button class="status-btn active" data-status="todas" onclick="setStatusFilter('todas', this)">Todas</button>
+        <button class="status-btn" data-status="pendente" onclick="setStatusFilter('pendente', this)">Pendentes</button>
+        <button class="status-btn" data-status="done" onclick="setStatusFilter('done', this)">Concluídas</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h2 id="main-title">Todas as tarefas</h2>
+        <p id="main-sub">Organize seus estudos e acompanhe seu progresso</p>
+      </div>
+    </div>
+
+    <div class="add-form">
+      <div class="add-form-top">
+        <input class="task-input" id="task-input" type="text" placeholder="Nova tarefa... ex: Estudar capítulo 3 de Python" maxlength="120">
+      </div>
+      <div class="add-form-bottom">
+        <select class="subject-select" id="subject-select">
+          <option value="Programação">💻 Programação</option>
+          <option value="Matemática">📐 Matemática</option>
+          <option value="Inglês">🌐 Inglês</option>
+          <option value="Física">⚛️ Física</option>
+          <option value="História">📜 História</option>
+          <option value="Design">🎨 Design</option>
+          <option value="Banco de Dados">🗄️ Banco de Dados</option>
+          <option value="Outro">📌 Outro</option>
+        </select>
+        <select class="priority-select" id="priority-select">
+          <option value="alta">🔴 Alta prioridade</option>
+          <option value="media" selected>🟡 Média prioridade</option>
+          <option value="baixa">🟢 Baixa prioridade</option>
+        </select>
+        <button class="add-btn" onclick="addTask()">
+          + Adicionar
+        </button>
+      </div>
+    </div>
+
+    <div class="tasks-wrap" id="tasks-wrap">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">📝</div>
+        <h3>Nenhuma tarefa ainda</h3>
+        <p>Adicione sua primeira tarefa de estudo acima!</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
